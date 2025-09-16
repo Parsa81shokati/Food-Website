@@ -4,7 +4,7 @@ import React from "react";
 function HomeHero() {
   return (
     <div className="flex flex-col md:flex-row justify-center md:mx-10 ">
-      <div className="flex flex-col items-center md:ml-25 gap-5 md:gap-12 mt-6 md:mt-10">
+      <div className="flex flex-col items-center md:ml-25 gap-5 md:gap-12 mt-8 md:mt-10">
         <h1 className="text-4xl/10 md:text-8xl/25 font-bold text-left">
           Delicious
           <br className="hidden md:flex" />

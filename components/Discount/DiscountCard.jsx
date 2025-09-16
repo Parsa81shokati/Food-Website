@@ -11,8 +11,8 @@ function DiscountCard({ food }) {
 
   const cartItem = items.find((i) => i.id === food.id);
   return (
-    <div className=" relative mt-15 md:mt-37 flex flex-col justify-center items-center h-50 md:h-70 w-40 md:w-58 bg-white border-none rounded-4xl shadow-md">
-      <div className="absolute -top-12 w-28 h-27 md:w-45 md:h-43 rounded-full border-4 md:border-6 border-red-900 bg-white overflow-hidden p-2 flex items-center justify-center">
+    <div className=" relative mt-15 md:mt-37 flex flex-col justify-center items-center h-50 md:h-70 w-37 md:w-58 bg-white border-none rounded-2xl md:rounded-4xl shadow-md">
+      <div className="absolute -top-12 w-28 h-27 md:w-45 md:h-43 rounded-full border-4 md:border-6 border-red-900 bg-white overflow-hidden p-1 flex items-center justify-center">
         <Image
           src={food.image?.url}
           alt={food.title}

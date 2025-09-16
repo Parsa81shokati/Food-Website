@@ -8,8 +8,10 @@ function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* About */}
         <div>
-          <h3 className="text-xl font-bold mb-4">About Us</h3>
-          <p className="text-gray-300">
+          <h3 className=" text-lg md:text-xl font-bold mb-2 md:mb-4">
+            About Us
+          </h3>
+          <p className="text-xs text-gray-300">
             Foody is your go-to place for delicious meals made with fresh
             ingredients. We bring taste and joy to your table.
           </p>
@@ -17,10 +19,12 @@ function Footer() {
 
         {/* Quick Links */}
         <div>
-          <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-          <ul className="space-y-2">
+          <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-4">
+            Quick Links
+          </h3>
+          <ul>
             <li>
-              <Link href="/" className="hover:text-red-500">
+              <Link href="/" className=" hover:text-red-500">
                 Home
               </Link>
             </li>
@@ -44,10 +48,10 @@ function Footer() {
 
         {/* Contact Info */}
         <div>
-          <h3 className="text-xl font-bold mb-4">Contact</h3>
-          <p className="text-gray-300">123 Main Street, Your City</p>
-          <p className="text-gray-300">+1 (234) 567-890</p>
-          <p className="text-gray-300">info@foody.com</p>
+          <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-4">Contact</h3>
+          <p className="text-xs text-gray-300">123 Main Street, Your City</p>
+          <p className="text-xs text-gray-300">+1 (234) 567-890</p>
+          <p className="text-xs text-gray-300">info@foody.com</p>
         </div>
 
         {/* Social Media */}

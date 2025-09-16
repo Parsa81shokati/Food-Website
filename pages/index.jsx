@@ -2,13 +2,10 @@ import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import client from "@/lib/apolloClient";
 import { GET_DISCOUNTED_FOODS } from "@/lib/queries/DiscountedFoods";
-
-import { GET_FOODS_BY_CATEGORY } from "@/lib/queries/Foods";
-
 import TableReservation from "@/components/Reservation/TableReservation";
 import DiscountSwiper from "@/components/Discount/DiscountSwiper";
-import Aboutus from "@/components/AboutUs/Aboutus";
 import HomeHero from "@/components/Hero/HomeHero";
+import OurTeam from "@/components/OurTeam/OurTeam";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,7 +39,7 @@ export default function Home({ discounted }) {
         <TableReservation />
       </div>
       <div>
-        <Aboutus />
+        <OurTeam />
       </div>
     </div>
   );

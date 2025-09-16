@@ -8,7 +8,7 @@ const team = [
   { id: 4, src: "/4-min.png", name: "James Walker", job: "head chef" },
 ];
 
-function Aboutus() {
+function OurTeam() {
   return (
     <div className="flex flex-col justify-center items-center mb-15 px-10 md:p-8 md:mb-25">
       <div className="flex flex-col items-center justify-center">
@@ -28,34 +28,9 @@ function Aboutus() {
             <p className="text-sm">{i.job}</p>
           </div>
         ))}
-
-        {/* <Image
-          src="/1-min.png"
-          width={400}
-          height={400}
-          className="rounded-4xl shadow-2xl border-3 border-white"
-        />
-        <Image
-          src="/2-min.png"
-          width={400}
-          height={400}
-          className="rounded-4xl shadow-2xl border-3 border-white"
-        />
-        <Image
-          src="/3-min.png"
-          width={400}
-          height={400}
-          className="rounded-4xl shadow-2xl border-3 border-white"
-        />
-        <Image
-          src="/4-min.png"
-          width={400}
-          height={400}
-          className="rounded-4xl shadow-2xl border-3 border-white"
-        /> */}
       </div>
     </div>
   );
 }
 
-export default Aboutus;
+export default OurTeam;
