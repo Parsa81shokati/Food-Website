@@ -12,15 +12,9 @@ function FoodsCard({ food }) {
   const cartItem = items.find((i) => i.id === food.id);
 
   return (
-    <div className=" relative mt-37 flex flex-col justify-center items-center h-95 w-75 bg-white border-none rounded-4xl shadow-2xl">
-      <div className=" -top-5 -right-5 absolute flex items-center justify-start mb-3 ">
-        <FaStar className="text-yellow-400 mr-1 text-6xl" />
-        <span className=" right-5 font-bold top-5 absolute text-lg text-gray-700">
-          5.0
-        </span>
-      </div>
-
-      <div className="absolute -top-15 w-53 h-52 bg-white overflow-hidden p-1 flex items-center justify-center ">
+    <div className=" relative mt-10 md:mt-37 flex flex-col items-center justify-between h-60 md:h-95 w-43 md:w-75 bg-white border-none rounded-4xl shadow-2xl">
+      {/*image*/}
+      <div className="absolute -top-15 w-30 h-28 md:w-53 md:h-52 bg-white overflow-hidden  flex rounded-full items-center justify-center ">
         <Image
           src={food.image?.url}
           alt={food.title}
@@ -29,25 +23,39 @@ function FoodsCard({ food }) {
           className=" w-full h-full object-cover"
         />
       </div>
+      <div>
+        {/*title*/}
+        <div className="flex flex-col font-sans items-center w-full mt-15 md:mt-23 px-2 md:px-4  ">
+          <h3 className="text-sm md:text-2xl line-clamp-1 font-bold md:p-4 text-center md:h-22 ">
+            {food.title}
+          </h3>
+        </div>
 
-      <div className="flex flex-col font-sans items-center w-full mt-25 px-4 ">
-        <h3 className=" text-2xl font-bold p-4 text-center mt-7 h-22 ">
-          {food.title}
-        </h3>
-        <p className="text-base text-gray-500 px-3 text-center">
-          {food.description}
-        </p>
+        {/*stars*/}
+        <div className="flex justify-center mt-3">
+          {Array.from({ length: 5 }, (_, i) => (
+            <FaStar key={i} className="text-yellow-400" />
+          ))}
+        </div>
+
+        {/*description*/}
+        <div className="mt-4">
+          <p className="text-xs md:text-base line-clamp-2 text-gray-500 px-3 text-center">
+            {food.description}
+          </p>
+        </div>
       </div>
 
-      <div className="flex items-center justify-center mt-6 mb-4 w-full gap-23">
-        <p className="text-xl font-bold  ">${food.price}</p>
+      {/*buy and price*/}
+      <div className="flex items-center justify-between px-6 mb-5 md:mb-4 w-full md:gap-23">
+        <p className="text-sm md:text-xl font-bold">${food.price}</p>
         {!cartItem ? (
           <button
             onClick={(e) => {
               e.preventDefault();
               dispatch(addItem(food));
             }}
-            className="flex items-center justify-center w-25 h-10 bg-red-900 text-lg text-white rounded-4xl"
+            className="flex items-center justify-center w-15 md:w-25 h-7 md:h-10 bg-red-900 text-xs md:text-lg text-white rounded-4xl"
           >
             By Now
           </button>
@@ -58,17 +66,19 @@ function FoodsCard({ food }) {
                 e.preventDefault();
                 dispatch(removeItem(food));
               }}
-              className="text-4xl"
+              className="md:text-4xl"
             >
               -
             </button>
-            <span className="text-lg font-bold">{cartItem.quantity}</span>
+            <span className="text-xs md:text-lg font-bold">
+              {cartItem.quantity}
+            </span>
             <button
               onClick={(e) => {
                 e.preventDefault();
                 dispatch(addItem(food));
               }}
-              className="text-4xl"
+              className="md:text-4xl"
             >
               +
             </button>

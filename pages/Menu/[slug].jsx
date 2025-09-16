@@ -40,9 +40,8 @@ export async function getStaticProps({ params }) {
 }
 
 function Details({ food }) {
-  console.log(food);
   return (
-    <div className="flex gap-15 items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col md:flex-row gap-15 items-center justify-center min-h-screen bg-gray-100">
       <FoodDetails food={food} />
 
       <div className="">

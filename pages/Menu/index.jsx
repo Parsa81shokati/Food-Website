@@ -46,7 +46,7 @@ function Menu({ categories, foodsData }) {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row justify-center gap-6 ">
+      <div className="flex flex-row flex-wrap justify-center gap-6 ">
         {categories.map((cat) => (
           <div key={cat.id} onClick={() => handleCategoryClick(cat.name)}>
             <CategoryCard data={cat} />
@@ -54,7 +54,7 @@ function Menu({ categories, foodsData }) {
         ))}
       </div>
 
-      <div className="grid grid-cols-4 mt-10 ">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 mt-10 gap-6 ">
         {filteredFoods.map((food) => (
           <Link key={food.id} href={`/Menu/${food.slug}`}>
             <FoodsCard food={food} />
