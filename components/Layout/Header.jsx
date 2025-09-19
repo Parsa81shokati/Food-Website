@@ -58,8 +58,8 @@ function Header() {
           <AiOutlineShoppingCart className=" text-2xl md:text-4xl" />
         </button>
         {onOpenCheckout && (
-          <div className=" absolute md:top-23 md:right-50">
-            <CheckoutModal />
+          <div className=" absolute top-15 right-10 md:top-23 md:right-50">
+            <CheckoutModal setOnOpenCheckout={setOnopenCheckout} />
           </div>
         )}
         <button

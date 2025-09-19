@@ -123,7 +123,9 @@ function LoginModal({ setOnopenLogin }) {
                 }`}
               />
             </div>
-            {error && <p className="text-red-600 md:text-lg -mt-9">{error}</p>}
+            {error && (
+              <p className="text-red-600 md:text-lg -mt-11 md:-mt-9">{error}</p>
+            )}
             <button
               onClick={handleSendOtp}
               className="bg-[#9e0910] md:text-2xl text-white w-full px-2 md:px-4 py-3 md:py-4 rounded-2xl hover:bg-[#68070b]"
@@ -134,7 +136,7 @@ function LoginModal({ setOnopenLogin }) {
         )}
         {step === 2 && (
           <div className="flex flex-col items-center gap-12">
-            <label className="text-gray-700 text-2xl font-bold">
+            <label className="text-gray-700 text-3xl md:text-4xl font-bold">
               Enter Code
             </label>
             <OtpInput
@@ -149,7 +151,7 @@ function LoginModal({ setOnopenLogin }) {
             {error && <p className="text-red-500 text-xl -mt-9">{error}</p>}
             <button
               onClick={handleVerifyOtp}
-              className="bg-[#9e0910] text-2xl text-white w-full px-4 py-4 rounded-2xl hover:bg-[#68070b]"
+              className="bg-[#9e0910] md:text-2xl text-white w-full px-2 md:px-4 py-3 md:py-4 rounded-2xl hover:bg-[#68070b]"
             >
               Verify
             </button>
@@ -158,7 +160,7 @@ function LoginModal({ setOnopenLogin }) {
 
         {step === 3 && (
           <div className="flex flex-col gap-8">
-            <h3 className="text-5xl font-bold text-center mb-9">
+            <h3 className="text-3xl md:text-5xl font-bold text-center mb-9">
               Create Account
             </h3>
             <div className="relative w-full">
