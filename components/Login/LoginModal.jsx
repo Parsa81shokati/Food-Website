@@ -96,15 +96,17 @@ function LoginModal({ setOnopenLogin }) {
         </div>
         {step === 1 && (
           <div className="flex flex-col gap-12">
-            <h3 className="text-5xl font-bold text-center mb-9">Login</h3>
+            <h3 className="text-3xl md:text-5xl font-bold text-center mb-9">
+              Login
+            </h3>
             <div className="relative w-full">
               <label
                 htmlFor="phone"
-                className=" block text-gray-700 text-xl font-bold mb-2"
+                className=" block text-gray-700 md:text-xl font-bold mb-2"
               >
                 phone
               </label>
-              <span className="absolute top-11 flex items-center  text-5xl">
+              <span className="absolute top-10 md:top-11 flex items-center text-4xl md:text-5xl">
                 <IoIosPhonePortrait />
               </span>
               <input
@@ -114,17 +116,17 @@ function LoginModal({ setOnopenLogin }) {
                 placeholder="09123456789"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className={` w-full pl-12 pr-3 py-4 border-2 border-gray-200 text-2xl rounded-2xl outline-none transition ${
+                className={` w-full pl-8 md:pl-12 pr-3 py-3 md:py-4 border-2 border-gray-200 md:text-2xl rounded-2xl outline-none transition ${
                   error
                     ? "border-red-500 focus:ring-red-400 focus:border-red-400"
                     : "border-gray-300 focus:ring-[#9e0910] focus:border-[#9e0910]"
                 }`}
               />
             </div>
-            {error && <p className="text-red-600 text-lg -mt-9">{error}</p>}
+            {error && <p className="text-red-600 md:text-lg -mt-9">{error}</p>}
             <button
               onClick={handleSendOtp}
-              className="bg-[#9e0910] text-2xl text-white w-full px-4 py-4 rounded-2xl hover:bg-[#68070b]"
+              className="bg-[#9e0910] md:text-2xl text-white w-full px-2 md:px-4 py-3 md:py-4 rounded-2xl hover:bg-[#68070b]"
             >
               login / sign up
             </button>
