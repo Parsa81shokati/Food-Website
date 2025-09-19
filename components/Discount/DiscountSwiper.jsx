@@ -11,7 +11,7 @@ function DiscountSwiper({ discounted }) {
     <div className="flex flex-row items-center p-2 md:px-10 ">
       <div className="flex flex-col items-center justify-center gap-3 h-70 md:h-105 p-1 md:p-3 rounded-l-3xl bg-[#9e0910] text-white">
         <h2 className="text-base md:text-4xl font-bold">Food Party</h2>
-        {/* <CountdownTimer className=" font-mono text-base text-white " /> */}
+        <CountdownTimer className=" font-mono text-base text-white " />
       </div>
 
       <Swiper
