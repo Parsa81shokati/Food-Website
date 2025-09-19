@@ -25,7 +25,7 @@ function Header() {
   const currentPath = router.asPath;
 
   return (
-    <div className=" flex justify-between p-6 md:p-0 md:justify-around  md:my-10 md:gap-14">
+    <div className="fixed flex justify-between py-3 px-6 md:p-0 md:justify-around w-full border-b-2 md:border-b-4 border-b-red-800 bg-white md:pb-6 md:pt-8 md:gap-14 z-50">
       {/* Logo */}
       <div className="flex items-center md:flex-col">
         <IoFastFoodSharp className=" text-[#9e0910] text-2xl md:text-3xl" />
@@ -35,7 +35,7 @@ function Header() {
       </div>
 
       {/* Links */}
-      <nav className="hidden md:flex gap-12">
+      <nav className="hidden md:flex mt-3 gap-12">
         {routes.map((rout) => (
           <Link
             key={rout.id}
