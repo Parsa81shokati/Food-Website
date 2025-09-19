@@ -11,8 +11,8 @@ function DiscountCard({ food }) {
 
   const cartItem = items.find((i) => i.id === food.id);
   return (
-    <div className=" relative mt-15 md:mt-37 flex flex-col justify-center items-center h-50 md:h-70 w-37 md:w-58 bg-white border-none rounded-2xl md:rounded-4xl shadow-md">
-      <div className="absolute -top-12 w-28 h-27 md:w-45 md:h-43 rounded-full border-4 md:border-6 border-red-900 bg-white overflow-hidden p-1 flex items-center justify-center">
+    <div className=" relative mt-15 md:mt-27 flex flex-col justify-center items-center h-50 md:h-70 w-37 md:w-58 bg-white border-none rounded-2xl md:rounded-4xl shadow-md">
+      <div className="absolute -top-12 md:-top-22 w-28 h-27 md:w-45 md:h-43 rounded-full border-4 md:border-6 border-red-900 bg-white overflow-hidden p-1 flex items-center justify-center">
         <Image
           src={food.image?.url}
           alt={food.title}
@@ -23,17 +23,17 @@ function DiscountCard({ food }) {
       </div>
       <div className="flex mt-16 md:mt-23">
         {Array.from({ length: 5 }, (_, i) => (
-          <FaStar key={i} className="text-yellow-400" />
+          <FaStar key={i} className="text-base md:text-2xl text-yellow-400" />
         ))}
       </div>
-      <div className="flex flex-col items-center w-full mt-1 md:mt-3 md:px-4 flex-grow">
+      <div className="flex flex-col items-center w-full mt-1 md:px-3 flex-grow">
         <h3 className=" text-sm md:text-xl font-bold p-2 md:p-4 text-center">
           {food.title}
         </h3>
       </div>
 
-      <div className="flex justify-around mb-5 md:mb-6 w-full md:gap-23">
-        <p className=" md:text-xl font-bold">${food.price}</p>
+      <div className="flex justify-around mb-5 md:mb-6 w-full  ">
+        <p className=" md:text-xl font-bold ">${food.price}</p>
         <div>
           {!cartItem ? (
             <button

@@ -6,17 +6,19 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { FaUser } from "react-icons/fa";
 import CheckoutModal from "../checkout/CheckoutModal";
 import { useRouter } from "next/router";
+import LoginModal from "../Login/LoginModal";
 
 export const routes = [
   { id: "1", pathname: "/", name: "Home" },
   { id: "2", pathname: "/Menu", name: "Menu" },
   { id: "3", pathname: "/#reservation", name: "Reservation" },
-  { id: "4", pathname: "/AboutUs", name: "About Us" },
-  { id: "5", pathname: "/Contact", name: "Contact" },
+  { id: "4", pathname: "/#aboutUs", name: "About Us" },
+  { id: "5", pathname: "/#contact", name: "Contact" },
 ];
 
 function Header() {
-  const [onOpen, setOnopen] = useState(false);
+  const [onOpenCheckout, setOnopenCheckout] = useState(false);
+  const [onOpenLogin, setOnopenLogin] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const router = useRouter();
@@ -49,17 +51,23 @@ function Header() {
 
       {/* Shopp & Signup */}
       <div className="flex items-center gap-2 md:gap-4">
-        <button className="relative  " onClick={() => setOnopen(!onOpen)}>
+        <button
+          className="relative  "
+          onClick={() => setOnopenCheckout(!onOpenCheckout)}
+        >
           <AiOutlineShoppingCart className=" text-2xl md:text-4xl" />
         </button>
-        {onOpen && (
+        {onOpenCheckout && (
           <div className=" absolute md:top-23 md:right-50">
             <CheckoutModal />
           </div>
         )}
-        <button className="p-1 md:p-0 md:block md:w-40 md:h-15 bg-[#9e0910] text-white rounded-4xl">
+        <button
+          onClick={() => setOnopenLogin(!onOpenLogin)}
+          className="p-2 md:p-0 md:block md:w-40 md:h-15 bg-[#9e0910] text-white rounded-4xl"
+        >
           <FaUser className="md:hidden" />
-          <p className="hidden md:flex md:justify-center text:xl">Sign Up</p>
+          <p className="hidden md:flex md:justify-center text-2xl">Sign Up</p>
         </button>
         <button
           className="md:hidden text-2xl"
@@ -104,6 +112,11 @@ function Header() {
           ))}
         </nav>
       </div>
+      {onOpenLogin && (
+        <div className=" absolute ">
+          <LoginModal setOnopenLogin={setOnopenLogin} />
+        </div>
+      )}
     </div>
   );
 }

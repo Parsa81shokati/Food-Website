@@ -33,8 +33,6 @@ function Menu({ categories, foodsData }) {
 
   const filteredFoods = filterFoodsByCategory(foodsData, category);
 
-  console.log(router.query);
-
   const handleCategoryClick = (catName) => {
     router.push({
       pathname: "/Menu",
@@ -42,19 +40,17 @@ function Menu({ categories, foodsData }) {
     });
   };
 
-  console.log(filteredFoods);
-
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row flex-wrap justify-center gap-6 ">
+      <div className="flex flex-row flex-wrap justify-center py-7 gap-3 md:gap-6 ">
         {categories.map((cat) => (
           <div key={cat.id} onClick={() => handleCategoryClick(cat.name)}>
-            <CategoryCard data={cat} />
+            <CategoryCard data={cat} category={category} />
           </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 mt-10 gap-6 ">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 mb-15 md:py-8 mt-10 gap-y-15 justify-items-center ">
         {filteredFoods.map((food) => (
           <Link key={food.id} href={`/Menu/${food.slug}`}>
             <FoodsCard food={food} />

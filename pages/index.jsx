@@ -5,7 +5,7 @@ import { GET_DISCOUNTED_FOODS } from "@/lib/queries/DiscountedFoods";
 import TableReservation from "@/components/Reservation/TableReservation";
 import DiscountSwiper from "@/components/Discount/DiscountSwiper";
 import HomeHero from "@/components/Hero/HomeHero";
-import OurTeam from "@/components/OurTeam/OurTeam";
+import AboutUs from "@/components/AboutUs/AboutUs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,7 +39,7 @@ export default function Home({ discounted }) {
         <TableReservation />
       </div>
       <div>
-        <OurTeam />
+        <AboutUs />
       </div>
     </div>
   );

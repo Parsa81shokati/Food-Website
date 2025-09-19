@@ -12,9 +12,9 @@ function FoodsCard({ food }) {
   const cartItem = items.find((i) => i.id === food.id);
 
   return (
-    <div className=" relative mt-10 md:mt-37 flex flex-col items-center justify-between h-60 md:h-95 w-43 md:w-75 bg-white border-none rounded-4xl shadow-2xl">
+    <div className=" relative mt-10 md:mt-37 flex flex-col items-center justify-between h-60 md:h-88 w-43 md:w-75 bg-white border-none rounded-4xl shadow-2xl">
       {/*image*/}
-      <div className="absolute -top-15 w-30 h-28 md:w-53 md:h-52 bg-white overflow-hidden  flex rounded-full items-center justify-center ">
+      <div className="absolute -top-15 md:-top-30 w-30 h-28 md:w-53 md:h-52 bg-white overflow-hidden  flex rounded-full items-center justify-center ">
         <Image
           src={food.image?.url}
           alt={food.title}
@@ -25,21 +25,21 @@ function FoodsCard({ food }) {
       </div>
       <div>
         {/*title*/}
-        <div className="flex flex-col font-sans items-center w-full mt-15 md:mt-23 px-2 md:px-4  ">
-          <h3 className="text-sm md:text-2xl line-clamp-1 font-bold md:p-4 text-center md:h-22 ">
+        <div className="flex flex-col font-sans items-center text-center w-full mt-15 md:mt-26 px-2 md:px-4  ">
+          <h3 className="text-sm md:text-2xl font-bold line-clamp-1  ">
             {food.title}
           </h3>
         </div>
 
         {/*stars*/}
-        <div className="flex justify-center mt-3">
+        <div className="flex justify-center mt-3 md:mt-6">
           {Array.from({ length: 5 }, (_, i) => (
-            <FaStar key={i} className="text-yellow-400" />
+            <FaStar key={i} className="md:text-xl text-yellow-400" />
           ))}
         </div>
 
         {/*description*/}
-        <div className="mt-4">
+        <div className="mt-4 md:mt-7 md:px-5">
           <p className="text-xs md:text-base line-clamp-2 text-gray-500 px-3 text-center">
             {food.description}
           </p>
@@ -47,7 +47,7 @@ function FoodsCard({ food }) {
       </div>
 
       {/*buy and price*/}
-      <div className="flex items-center justify-between px-6 mb-5 md:mb-4 w-full md:gap-23">
+      <div className="flex items-center justify-around px-6 mb-5 md:mb-8 w-full md:gap-10 ">
         <p className="text-sm md:text-xl font-bold">${food.price}</p>
         {!cartItem ? (
           <button
