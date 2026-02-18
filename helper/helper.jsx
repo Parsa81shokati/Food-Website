@@ -23,3 +23,10 @@ const filterFoodsByCategory = (foods, category) => {
   return foods.filter((food) => food.category === category);
 };
 export { filterFoodsByCategory };
+
+export const calculateDiscountPrice = (price, discount) => {
+  if (!discount || discount <= 0) return price;
+
+  const finalPrice = price * (1 - discount / 100);
+  return Number(finalPrice.toFixed(2));
+};

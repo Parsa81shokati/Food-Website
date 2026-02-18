@@ -6,12 +6,11 @@ import { ApolloProvider } from "@apollo/client/react";
 import { Provider } from "react-redux";
 
 export default function App({ Component, pageProps }) {
+  const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
   return (
     <ApolloProvider client={client}>
       <Provider store={store}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        {getLayout(<Component {...pageProps} />)}
       </Provider>
     </ApolloProvider>
   );

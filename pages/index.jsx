@@ -29,8 +29,9 @@ export async function getStaticProps() {
 }
 
 export default function Home({ discounted }) {
+  console.log(discounted);
   return (
-    <div className=" flex flex-col font-sans min-h-screen gap-20 md:gap-30 ">
+    <div className=" flex flex-col font-sans min-h-screen gap-20 md:gap-20 ">
       <HomeHero />
       <div>
         <DiscountSwiper discounted={discounted} />

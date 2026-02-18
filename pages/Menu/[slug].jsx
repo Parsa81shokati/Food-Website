@@ -1,3 +1,4 @@
+import BackButton from "@/components/BackButton";
 import CommentCard from "@/components/DetailsPage/CommentCard";
 import FoodDetails from "@/components/DetailsPage/FoodDetails";
 import client from "@/lib/apolloClient";
@@ -42,9 +43,12 @@ export async function getStaticProps({ params }) {
 function Details({ food }) {
   return (
     <div className="flex flex-col md:flex-row gap-15 items-center justify-center min-h-screen bg-gray-100">
-      <FoodDetails food={food} />
+      <div>
+        <BackButton />
+        <FoodDetails food={food} />
+      </div>
 
-      <div className="">
+      <div>
         {food.comments.map((comment) => (
           <CommentCard comment={comment} />
         ))}

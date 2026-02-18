@@ -25,22 +25,22 @@ function Header() {
   const currentPath = router.asPath;
 
   return (
-    <div className="fixed flex justify-between py-3 px-6 md:p-0 md:justify-around w-full border-b-2 md:border-b-4 border-b-red-800 bg-white md:pb-6 md:pt-8 md:gap-14 z-50">
+    <div className="fixed flex justify-between py-3 px-6 md:p-0 md:justify-around w-full border-b-2 border-red-800 bg-white md:py-2 md:gap-14 z-50">
       {/* Logo */}
       <div className="flex items-center md:flex-col">
-        <IoFastFoodSharp className=" text-[#9e0910] text-2xl md:text-3xl" />
-        <h1 className="ml-1 md:ml-0 text-xl md:text-2xl font-bold">
+        <IoFastFoodSharp className=" text-[#9e0910] text-2xl " />
+        <h1 className="ml-1 md:ml-0 text-base font-bold">
           <span className="text-[#9e0910]">f</span>oody
         </h1>
       </div>
 
       {/* Links */}
-      <nav className="hidden md:flex mt-3 gap-12">
+      <nav className="hidden md:flex mt-3.5 gap-8">
         {routes.map((rout) => (
           <Link
             key={rout.id}
             href={rout.pathname}
-            className={`text-2xl hover:text-[#9e0910] ${
+            className={`text-base hover:text-[#9e0910] ${
               rout.pathname === currentPath && "text-[#9e0910] font-bold"
             }`}
           >
@@ -52,22 +52,22 @@ function Header() {
       {/* Shopp & Signup */}
       <div className="flex items-center gap-2 md:gap-4">
         <button
-          className="relative  "
+          className="relative hover:scale-110 "
           onClick={() => setOnopenCheckout(!onOpenCheckout)}
         >
-          <AiOutlineShoppingCart className=" text-2xl md:text-4xl" />
+          <AiOutlineShoppingCart className=" text-2xl " />
         </button>
         {onOpenCheckout && (
-          <div className=" absolute top-15 right-10 md:top-23 md:right-50">
+          <div className=" absolute top-15 right-10 md:top-15 md:right-43">
             <CheckoutModal setOnOpenCheckout={setOnopenCheckout} />
           </div>
         )}
         <button
           onClick={() => setOnopenLogin(!onOpenLogin)}
-          className="p-2 md:p-0 md:block md:w-40 md:h-15 bg-[#9e0910] text-white rounded-4xl"
+          className="p-2 md:px-3 md:block hover:scale-104 hover:font-bold bg-[#9e0910] text-white rounded-4xl"
         >
           <FaUser className="md:hidden" />
-          <p className="hidden md:flex md:justify-center text-2xl">Sign Up</p>
+          <p className="hidden md:flex md:justify-center text-sm">Sign Up</p>
         </button>
         <button
           className="md:hidden text-2xl"

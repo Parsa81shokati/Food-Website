@@ -3,8 +3,8 @@ import React from "react";
 
 function TableReservation() {
   return (
-    <div id="reservation" className="py-15">
-      <div className="flex flex-col md:flex-row justify-center gap-5 md:gap-30 bg-red-50 p-10 md:py-10">
+    <div id="reservation" className="py-5">
+      <div className="flex flex-col md:flex-row justify-center gap-5 md:gap-20 bg-red-50 p-10 md:py-10">
         <div className="rounded-full overflow-hidden bg-red-100 ">
           <Image
             src="/table.png"
@@ -14,19 +14,19 @@ function TableReservation() {
             className="rounded-full p-5 md:p-10"
           />
         </div>
-        <div className="flex flex-col items-start justify-center gap-6 md:p-6 ">
-          <h3 className="text-2xl md:text-6xl font-bold">
-            <span className="text-3xl md:text-7xl text-[#9e0910]">
+        <div className="flex flex-col items-start justify-center gap-6 md:gap-10 md:p-6 ">
+          <h3 className="text-2xl md:text-4xl font-bold">
+            <span className="text-3xl md:text-5xl text-[#9e0910]">
               Reserve{" "}
             </span>
             Your Table
           </h3>
-          <p className=" text-xs md:text-2xl md:mt-15">
+          <p className=" text-xs md:text-xl ">
             "Secure your spot in advance and enjoy a seamless dining experience.
             Whether it’s a special occasion or a casual night out, we’ll make
             sure your table is ready."
           </p>
-          <button className="w-30 h-8 md:w-55 md:h-18 mt-5 md:mt-25 bg-[#9e0910] text-sm md:text-2xl text-white rounded-full">
+          <button className="w-30 h-8 md:w-38 md:h-12 mt-5 md:mt-8 bg-[#9e0910] text-sm md:text-lg text-white rounded-full">
             Reserve Now
           </button>
         </div>

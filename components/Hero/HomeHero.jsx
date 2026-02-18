@@ -4,29 +4,37 @@ import React from "react";
 
 function HomeHero() {
   return (
-    <div className="flex flex-col md:flex-row justify-center md:justify-between md:mx-10 ">
-      <div className="flex flex-col items-center md:items-start md:ml-25 gap-7 md:gap-12 mt-8 md:mt-13">
-        <h1 className="text-4xl/10 md:text-8xl/25 font-bold text-left">
+    <div className="flex flex-col items-center md:items-start md:flex-row justify-center md:justify-around md:ml-20 my-8 md:my-0 gap-10 md:gap-20 ">
+      <div className="flex flex-col items-center  md:items-start gap-6 md:gap-9 text-center md:text-left mt-15 ">
+        <h1 className="text-4xl/10 md:text-5xl/14 font-bold">
           Delicious
           <br className="hidden md:flex" />
-          <span className="text-[#9e0910]"> food</span> is <br /> waiting for
-          you
+          <span className="text-[#9e0910] font-extrabold hover:underline transition">
+            {" "}
+            food{" "}
+          </span>
+          is <br /> waiting for you
         </h1>
-        <p className="text-gray-600 text-xs md:text-xl flex flex-wrap text-left ml-6 md:ml-0 ">
-          From comforting classics to exciting new flavors, we bring <br /> the
-          taste you love closer than ever. Your next favorite dish
-          <br /> is just a click away.
+        <p className="text-gray-600 text-xs md:text-base/5 flex flex-wrap text-left max-w-md ml-6 md:ml-0 leading-relaxed">
+          From comforting classics to exciting new flavors, we bring the taste
+          you love closer than ever. Your next favorite dish is just a click
+          away.
         </p>
-        <button className="w-32 h-10 md:w-60 md:h-15 bg-[#9e0910] text-white md:text-xl my-7 md:my-10 rounded-4xl">
-          <Link href="/Menu">View Menu</Link>
-        </button>
+
+        <Link
+          href="/Menu"
+          className="w-32 h-10 bg-[#9e0910] text-white my-7 md:my-2 rounded-full flex items-center justify-center hover:bg-[#7f070d] transition"
+        >
+          View Menu
+        </Link>
       </div>
       <div>
         <Image
-          src="/newfish.png"
+          src="/fishy.png"
           alt="Delicious Fish"
-          width={900}
-          height={1100}
+          width={600}
+          height={500}
+          className="rounded-xl md:max-w-lg lg:max-w-xl"
         />
       </div>
     </div>

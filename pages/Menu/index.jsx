@@ -1,13 +1,9 @@
 import CategoryCard from "@/components/Menu/CategoryCard";
-
 import client from "@/lib/apolloClient";
 import { GET_CATEGORIES } from "@/lib/queries/Categories";
-
-import React, { useEffect, useState } from "react";
-
+import React from "react";
 import { GET_FOODS_BY_CATEGORY } from "@/lib/queries/Foods";
 import { filterFoodsByCategory } from "@/helper/helper";
-
 import FoodsCard from "@/components/Menu/FoodsCard";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -40,9 +36,11 @@ function Menu({ categories, foodsData }) {
     });
   };
 
+  console.log(filteredFoods);
+
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row flex-wrap justify-center py-7 gap-3 md:gap-6 ">
+      <div className="flex flex-row flex-wrap justify-center py-7 md:mt-5 gap-3 md:gap-6 ">
         {categories.map((cat) => (
           <div key={cat.id} onClick={() => handleCategoryClick(cat.name)}>
             <CategoryCard data={cat} category={category} />
@@ -50,7 +48,7 @@ function Menu({ categories, foodsData }) {
         ))}
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 mb-15 md:py-8 mt-10 gap-y-15 justify-items-center ">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 mb-15 md:py-5 mt-5 gap-y-15 justify-items-center ">
         {filteredFoods.map((food) => (
           <Link key={food.id} href={`/Menu/${food.slug}`}>
             <FoodsCard food={food} />
