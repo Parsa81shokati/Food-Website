@@ -1,13 +1,28 @@
-import { addItem, removeItem } from "@/redux-toolkit/features/CheckoutSlice";
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Empty from "./Empty";
 import { calculateDiscountPrice } from "@/helper/helper";
-import Link from "next/link";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { FiShoppingBag } from "react-icons/fi";
+import { IoCloseOutline } from "react-icons/io5";
 
-function CheckoutModal({ setOnOpenCheckout }) {
+import CheckoutCart from "./CheckoutCart";
+import { useRouter } from "next/router";
+import useAuth from "@/hooks/useAuth";
+import LoginSignUpModal from "../Login/LoginSignUpModal";
+
+function CheckoutModal({
+  onOpenCheckout,
+  setOnOpenCheckout,
+  onOpenLogin,
+  setOnopenLogin,
+}) {
+  const { user, loading } = useAuth();
+  const router = useRouter();
+  const modalRef = useRef(null);
   const items = useSelector((state) => state.checkout.selectedItems);
-  const dispatch = useDispatch();
+
+  const totalCount = items.reduce((sum, i) => sum + i.quantity, 0);
 
   // محاسبه مجموع قیمت‌ها
   const calculateTotal = () => {
@@ -28,95 +43,195 @@ function CheckoutModal({ setOnOpenCheckout }) {
     }, 0);
   };
 
+  const calculateOriginalTotal = () => {
+    return items.reduce((total, item) => {
+      return total + item.price * item.quantity;
+    }, 0);
+  };
+
   const totalPrice = calculateTotal();
   const totalDiscount = calculateTotalDiscount();
+  const originalTotal = calculateOriginalTotal();
+
+  const handleCheckout = () => {
+    if (!user) {
+      setOnopenLogin(true);
+      setOnOpenCheckout(false);
+      return;
+    }
+
+    router.push("/checkout");
+  };
+
+  // بستن مودال با کلیک خارج از آن
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setOnOpenCheckout(false);
+      }
+    };
+
+    if (onOpenCheckout) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [onOpenCheckout, setOnOpenCheckout]);
 
   return (
-    <div>
-      {/* <div
-        className="fixed inset-0 z-40"
-        onClick={() => setOnOpenCheckout(false)}
-      /> */}
-      <div className="bg-gray-50 w-55 md:w-96 max-h-[80vh] rounded-t-2xl shadow-2xl overflow-y-auto px-4">
-        {items.length === 0 ? (
-          <Empty />
-        ) : (
-          items.map((item) => (
-            <div
-              key={item.id}
-              className="flex justify-between border-b border-gray-200 p-3 items-center"
-            >
-              <div className="flex flex-col flex-1">
-                <h3 className="font-medium text-sm line-clamp-1">
-                  {item.title}
-                </h3>
-                {item.discountPercentage > 0 ? (
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xs text-gray-400 line-through">
-                      ${item.price}
-                    </span>
-                    <span className="text-sm font-bold text-[#9e0910]">
-                      $
-                      {calculateDiscountPrice(
-                        item.price,
-                        item.discountPercentage,
-                      )}
+    <div className="relative">
+      {onOpenLogin && (
+        <LoginSignUpModal onClose={() => setOnopenLogin(false)} />
+      )}
+
+      <button
+        onClick={() => setOnOpenCheckout(!onOpenCheckout)}
+        className="relative p-2.5 hover:bg-gray-100 hover:scale-110 rounded-full transition-all duration-200 group"
+        aria-label="Shopping cart"
+      >
+        <AiOutlineShoppingCart className="text-2xl text-gray-700 group-hover:text-[#9e0910] transition-colors" />
+
+        {/* Badge با انیمیشن */}
+        {totalCount > 0 && (
+          <span className="absolute -top-1 -right-1 bg-[#9e0910] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full font-bold animate-pulse">
+            {totalCount}
+          </span>
+        )}
+      </button>
+
+      {onOpenCheckout && (
+        <>
+          {/* Overlay با افکت محو */}
+          <div
+            className="fixed inset-0 bg-black/10 backdrop-blur-sm z-40 transition-opacity"
+            onClick={() => setOnOpenCheckout(false)}
+          />
+
+          {/* مودال کارت */}
+          <div
+            ref={modalRef}
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:top-10 md:left-auto md:right-8 md:translate-x-0 md:translate-y-0 w-[calc(100%-2rem)] md:w-96 max-w-md bg-white rounded-2xl shadow-2xl z-40 overflow-hidden animate-slideDown flex flex-col max-h-[90vh] md:max-h-[85vh]"
+          >
+            {/* هدر */}
+            <div className="bg-gradient-to-r from-[#9e0910] to-[#c20e17] px-6 py-2.5 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <FiShoppingBag className="text-white text-xl" />
+                <h2 className="text-white font-semibold text-lg">
+                  Shopping Cart ({totalCount})
+                </h2>
+              </div>
+              <button
+                onClick={() => setOnOpenCheckout(false)}
+                className="text-white/80 hover:text-white transition-colors p-1 hover:bg-white/10 rounded-full"
+              >
+                <IoCloseOutline className="text-2xl" />
+              </button>
+            </div>
+
+            {/* محتوای اصلی */}
+            <div className="overflow-y-auto flex-grow scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 min-h-0">
+              {items.length === 0 ? (
+                <Empty onClose={setOnOpenCheckout} />
+              ) : (
+                <div className="divide-y divide-gray-100">
+                  {items.map((item, index) => (
+                    <CheckoutCart key={item.id || index} item={item} />
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* فوتر با خلاصه خرید */}
+            {items.length > 0 && (
+              <div className="bg-gray-50 px-6 py-2.5 border-t border-gray-200 space-y-3">
+                {/* خلاصه قیمت‌ها */}
+                <div className="space-y-1">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Original Price:</span>
+                    <span className="text-gray-500 line-through">
+                      ${originalTotal.toFixed(2)}
                     </span>
                   </div>
-                ) : (
-                  <span className="text-sm text-gray-700 mt-1">
-                    ${item.price}
+
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Total Discount:</span>
+                    <span className="text-green-600 font-medium">
+                      -${totalDiscount.toFixed(2)}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between items-center pt-1 border-t border-gray-200">
+                    <span className="font-bold text-gray-800">Total:</span>
+                    <div className="text-right">
+                      <span className="text-2xl font-bold text-[#9e0910]">
+                        ${totalPrice.toFixed(2)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* اطلاعات ارسال */}
+                {/* <div className="flex items-center gap-2 text-xs text-gray-500 bg-blue-50 p-1 rounded-lg">
+                  <BsTruck className="text-blue-500 flex-shrink-0" />
+                  <span>Free shipping on orders over $100</span>
+                </div> */}
+
+                {/* دکمه ادامه */}
+                <button
+                  onClick={handleCheckout}
+                  className="w-full bg-[#9e0910] hover:bg-[#7e0710] text-white py-3 rounded-xl font-semibold transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group"
+                >
+                  <span>Continue to Checkout</span>
+                  <span className="group-hover:translate-x-1 transition-transform">
+                    →
                   </span>
-                )}
-              </div>
-
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => dispatch(removeItem(item))}
-                  className="w-7 h-7 flex items-center justify-center rounded-full bg-gray-100 hover:bg-[#9e0910] hover:text-white transition"
-                >
-                  -
                 </button>
 
-                <span className="text-sm font-semibold w-6 text-center">
-                  {item.quantity}
-                </span>
-
+                {/* لینک ادامه خرید */}
                 <button
-                  onClick={() => dispatch(addItem(item))}
-                  className="w-7 h-7 flex items-center justify-center rounded-full bg-gray-100 hover:bg-[#9e0910] hover:text-white transition"
+                  onClick={() => setOnOpenCheckout(false)}
+                  className="w-full text-sm text-gray-500 hover:text-[#9e0910] transition-colors py-2"
                 >
-                  +
+                  Continue Shopping
                 </button>
               </div>
-            </div>
-          ))
-        )}
-      </div>
-      {items.length > 0 && (
-        <div className="bg-red-50 px-6 py-2 rounded-b-2xl border-t border-red-800 space-y-1">
-          <div className="flex justify-between text-sm text-gray-600">
-            <span>Total Discount</span>
-            <span className="font-medium">-${totalDiscount.toFixed(2)}</span>
+            )}
           </div>
-
-          <div className="flex justify-between items-center">
-            <span className="font-bold text-gray-700">Total</span>
-            <span className=" text-gray-700 font-bold ">
-              ${totalPrice.toFixed(2)}
-            </span>
-          </div>
-
-          <Link href="/checkout">
-            <button
-              onClick={() => setOnOpenCheckout(false)}
-              className="w-full mt-2 bg-[#9e0910] hover:bg-[#7e0710] text-white py-3 rounded-xl font-medium transition"
-            >
-              Continue to Checkout →
-            </button>
-          </Link>
-        </div>
+        </>
       )}
+
+      {/* استایل‌های اضافی برای انیمیشن */}
+      <style jsx>{`
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translate(-50%, -40%);
+          }
+          to {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+          }
+        }
+
+        @media (min-width: 768px) {
+          @keyframes slideDown {
+            from {
+              opacity: 0;
+              transform: translateY(-10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        }
+
+        .animate-slideDown {
+          animation: slideDown 0.2s ease-out;
+        }
+      `}</style>
     </div>
   );
 }

@@ -26,12 +26,17 @@ const checkoutSlice = createSlice({
         item.quantity -= 1;
       } else {
         state.selectedItems = state.selectedItems.filter(
-          (i) => i.id !== action.payload.id
+          (i) => i.id !== action.payload.id,
         );
       }
+    },
+    deleteItem: (state, action) => {
+      state.selectedItems = state.selectedItems.filter(
+        (item) => item.id !== action.payload.id,
+      );
     },
   },
 });
 
-export const { addItem, removeItem } = checkoutSlice.actions;
+export const { addItem, removeItem, deleteItem } = checkoutSlice.actions;
 export default checkoutSlice.reducer;

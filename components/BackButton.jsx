@@ -7,11 +7,15 @@ export default function BackButton() {
   return (
     <button
       onClick={() => router.back()}
-      className="flex items-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 
-                 text-gray-700 rounded-lg transition"
+      className="group flex items-center gap-2 px-4 py-2 bg-white hover:bg-[#9e0910] 
+                 text-gray-700 hover:text-white rounded-full shadow-md hover:shadow-xl 
+                 transition-all duration-300 border border-gray-200 hover:border-[#9e0910]"
     >
-      <IoArrowBack size={18} />
-      <span>Back</span>
+      <IoArrowBack
+        size={18}
+        className="group-hover:-translate-x-1 transition-transform"
+      />
+      <span className="text-sm font-medium">Back to Menu</span>
     </button>
   );
 }
