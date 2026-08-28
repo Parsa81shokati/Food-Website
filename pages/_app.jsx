@@ -1,5 +1,8 @@
-import Layout from "@/components/Layout/Layout";
-import client from "@/lib/apolloClient";
+import GlobalLoginModal from "@/components/auth/GlobalLoginModal";
+import CartPersist from "@/features/cart/components/CartPersist";
+import Layout from "@/components/layout/Layout";
+import AuthProvider from "@/features/auth/context/AuthContext";
+import client from "@/lib/apollo/Client";
 import store from "@/redux-toolkit/app/store";
 import "@/styles/globals.css";
 import { ApolloProvider } from "@apollo/client/react";
@@ -10,7 +13,11 @@ export default function App({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
       <Provider store={store}>
-        {getLayout(<Component {...pageProps} />)}
+        <AuthProvider>
+          <CartPersist />
+          <GlobalLoginModal />
+          {getLayout(<Component {...pageProps} />)}
+        </AuthProvider>
       </Provider>
     </ApolloProvider>
   );

@@ -1,4 +1,4 @@
-import { CREATE_Food } from "@/lib/Mutation/addFoodMutation";
+import { CREATE_Food } from "@/features/admin/mutation/addFoodMutation";
 import { useMutation } from "@apollo/client/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";

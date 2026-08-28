@@ -30,3 +30,19 @@ export const calculateDiscountPrice = (price, discount) => {
   const finalPrice = price * (1 - discount / 100);
   return Number(finalPrice.toFixed(2));
 };
+
+export const isOtpStillValid = (otpSession, phone) => {
+  if (otpSession.phone !== phone) return false;
+
+  // قبلاً تایید شده
+  if (otpSession.verified) {
+    return true;
+  }
+
+  // هنوز زمان OTP تمام نشده
+  if (otpSession.sentAt && Date.now() - otpSession.sentAt < 180000) {
+    return true;
+  }
+
+  return false;
+};

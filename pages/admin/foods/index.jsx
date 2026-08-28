@@ -1,14 +1,14 @@
-import AdminLayout from "@/components/admin/_layout";
-import DataTable from "@/components/admin/DataTable";
-import DeleteFood from "@/components/admin/DeleteFood";
-import Filters from "@/components/admin/Filters";
-import PageHeader from "@/components/admin/PageHeader";
-import Search from "@/components/admin/Search";
-import { foodColumns } from "@/constants/foodColumns";
-import { SORT_PRESETS } from "@/constants/sortOptions";
-import { useTableData } from "@/hooks/useTableData";
-import client from "@/lib/apolloClient";
-import { GET_FOODS_BY_CATEGORY } from "@/lib/queries/Foods";
+import AdminLayout from "@/features/admin/components/layout/AdminLayout";
+import DataTable from "@/features/admin/components/common/DataTable";
+import DeleteFood from "@/features/admin/components/DeleteFood";
+import Filters from "@/features/admin/components/common/Sort";
+import PageHeader from "@/features/admin/components/common/PageHeader";
+import Search from "@/features/admin/components/common/Search";
+import { foodColumns } from "@/features/admin/constants/admin/foodColumns";
+import { SORT_PRESETS } from "@/features/admin/constants/admin/sortOptions";
+import { useTableData } from "@/features/admin/hooks/useTableData";
+import client from "@/lib/apollo/Client";
+import { GET_FOODS_BY_CATEGORY } from "@/features/menu/queries/getFoods";
 import Link from "next/link";
 
 export async function getServerSideProps() {

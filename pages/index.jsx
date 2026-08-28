@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
-import client from "@/lib/apolloClient";
-import { GET_DISCOUNTED_FOODS } from "@/lib/queries/DiscountedFoods";
-import TableReservation from "@/components/Reservation/TableReservation";
-import DiscountSwiper from "@/components/Discount/DiscountSwiper";
-import HomeHero from "@/components/Hero/HomeHero";
-import AboutUs from "@/components/AboutUs/AboutUs";
+import client from "@/lib/apollo/Client";
+import { GET_DISCOUNTED_FOODS } from "@/features/admin/queries/DiscountedFoods";
+import TableReservation from "@/features/home/TableReservation";
+import DiscountSwiper from "@/features/home/DiscountSwiper";
+import HomeHero from "@/features/home/HomeHero";
+import AboutUs from "@/features/home/AboutUs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +29,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({ discounted }) {
-  console.log(discounted);
   return (
     <div className=" flex flex-col font-sans min-h-screen gap-20 md:gap-20 ">
       <HomeHero />

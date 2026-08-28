@@ -1,4 +1,4 @@
-import { CREATE_CATEGORY } from "@/lib/Mutation/addCategory";
+import { CREATE_CATEGORY } from "@/features/admin/mutation/addCategory";
 import { useMutation } from "@apollo/client/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

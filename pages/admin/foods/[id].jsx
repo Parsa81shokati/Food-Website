@@ -1,7 +1,7 @@
-import client from "@/lib/apolloClient";
-import { UPDATE_FOOD } from "@/lib/Mutation/updatefoodMutation";
+import client from "@/lib/apollo/Client";
+import { UPDATE_FOOD } from "@/features/admin/mutation/updatefoodMutation";
 
-import { GET_FOOD_BY_ID } from "@/lib/queries/AdminFood";
+import { GET_FOOD_BY_ID } from "@/features/admin/queries/AdminFood";
 import { useMutation } from "@apollo/client/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";

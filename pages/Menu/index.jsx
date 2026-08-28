@@ -1,10 +1,10 @@
-import CategoryCard from "@/components/Menu/CategoryCard";
-import client from "@/lib/apolloClient";
-import { GET_CATEGORIES } from "@/lib/queries/Categories";
+import CategoryCard from "@/features/menu/components/CategoryCard";
+import client from "@/lib/apollo/Client";
+import { GET_CATEGORIES } from "@/features/menu/queries/getCategories";
 import React from "react";
-import { GET_FOODS_BY_CATEGORY } from "@/lib/queries/Foods";
+import { GET_FOODS_BY_CATEGORY } from "@/features/menu/queries/getFoods";
 import { filterFoodsByCategory } from "@/helper/helper";
-import FoodsCard from "@/components/Menu/FoodsCard";
+import FoodsCard from "@/features/menu/components/FoodsCard";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
@@ -32,7 +32,7 @@ function Menu({ categories, foodsData }) {
 
   const handleCategoryClick = (catName) => {
     router.push({
-      pathname: "/Menu",
+      pathname: "/menu",
       query: { category: catName },
     });
   };
@@ -70,7 +70,7 @@ function Menu({ categories, foodsData }) {
             {filteredFoods.map((food) => (
               <Link
                 key={food.id}
-                href={`/Menu/${food.slug}`}
+                href={`/menu/${food.slug}`}
                 className="transform transition-transform hover:scale-103 hover:-translate-y-1"
               >
                 <FoodsCard food={food} />
@@ -90,7 +90,7 @@ function Menu({ categories, foodsData }) {
               No dishes available in this category
             </p>
             <button
-              onClick={() => router.push({ pathname: "/Menu" })}
+              onClick={() => router.push({ pathname: "/menu" })}
               className="px-6 py-2 bg-[#9e0910] text-white rounded-full text-sm hover:bg-[#7e0710] transition-colors"
             >
               View all items
