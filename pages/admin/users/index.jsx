@@ -11,7 +11,7 @@ import {
   BLOCK_USER,
   UPDATE_USER_ROLE,
 } from "@/features/admin/mutation/UpdateUserRole";
-import { GET_USERS } from "@/features/auth/queries/getUsers.js";
+import { GET_USERS } from "@/features/auth/queries/getUsers.jsx";
 import { useMutation, useQuery } from "@apollo/client/react";
 import React from "react";
 

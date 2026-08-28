@@ -1,6 +1,6 @@
 import GlobalLoginModal from "@/components/auth/GlobalLoginModal";
 import CartPersist from "@/features/cart/components/CartPersist";
-import Layout from "@/components/layout/Layout";
+import Layout from "@/components/Layout/Layout";
 import AuthProvider from "@/features/auth/context/AuthContext";
 import client from "@/lib/apollo/Client";
 import store from "@/redux-toolkit/app/store";
