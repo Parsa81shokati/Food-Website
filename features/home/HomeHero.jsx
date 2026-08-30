@@ -6,24 +6,6 @@ import { IoFastFoodOutline } from "react-icons/io5";
 import { BsClockHistory } from "react-icons/bs";
 
 function HomeHero() {
-  const imageRef = useRef(null);
-
-  useEffect(() => {
-    // انیمیشن ساده برای تصویر
-    const interval = setInterval(() => {
-      if (imageRef.current) {
-        imageRef.current.style.transform = "translateY(-5px)";
-        setTimeout(() => {
-          if (imageRef.current) {
-            imageRef.current.style.transform = "translateY(0px)";
-          }
-        }, 1500);
-      }
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-white via-red-50/30 to-orange-50/20 overflow-hidden">
       {/* الگوهای پس‌زمینه */}
@@ -146,16 +128,14 @@ function HomeHero() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#9e0910]/20 to-transparent rounded-full blur-3xl -z-10" />
 
             {/* تصویر اصلی */}
-            <div
-              ref={imageRef}
-              className="relative transition-transform duration-3000 ease-in-out"
-            >
+            <div className="relative animate-hero-float">
               <Image
                 src="/fishy.png"
                 alt="Delicious Fish Dish"
                 width={600}
                 height={500}
                 priority
+                fetchPriority="high"
                 className="relative z-10 drop-shadow-2xl hover:scale-105 transition-transform duration-500"
               />
 
@@ -185,6 +165,22 @@ function HomeHero() {
           </div>
         </div>
       </div>
+      <style jsx>{`
+        @keyframes heroFloat {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+
+          50% {
+            transform: translateY(-5px);
+          }
+        }
+
+        .animate-hero-float {
+          animation: heroFloat 3s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 }

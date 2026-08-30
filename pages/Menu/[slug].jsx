@@ -7,19 +7,48 @@ import Image from "next/image";
 import React from "react";
 import { MdOutlineRateReview } from "react-icons/md";
 
+// export async function getStaticPaths() {
+//   const { data } = await client.query({
+//     query: GET_FOODS_BY_CATEGORY,
+//   });
+
+//   const paths = data.meals.map((food) => ({
+//     params: {
+//       slug: food.slug,
+//     },
+//   }));
+
+//   return {
+//     paths,
+//     fallback: "blocking",
+//   };
+// }
+
+// export async function getStaticProps({ params }) {
+//   const { data } = await client.query({
+//     query: GET_FOOD_BY_SLUG,
+//     variables: {
+//       slug: params.slug,
+//     },
+//   });
+
+//   if (!data.meal) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+
+//   return {
+//     props: {
+//       food: data.meal,
+//     },
+//     revalidate: 60,
+//   };
+// }
+
 export async function getStaticPaths() {
-  const { data } = await client.query({
-    query: GET_FOODS_BY_CATEGORY,
-  });
-
-  const paths = data.meals.map((food) => ({
-    params: {
-      slug: food.slug,
-    },
-  }));
-
   return {
-    paths,
+    paths: [],
     fallback: "blocking",
   };
 }
