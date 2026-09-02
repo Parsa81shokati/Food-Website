@@ -76,14 +76,13 @@ function RecipientSection({ formData, setFormData, user, setFormErrors }) {
                 ? "border-[#9e0910] bg-[#9e0910]/5 shadow-md shadow-[#9e0910]/10"
                 : "border-gray-200 hover:border-[#9e0910]/40 hover:bg-gray-50"
             }`}
-            onClick={() =>
-              setFormData((prev) => ({
-                ...prev,
+            onClick={() => {
+              setFormData({
                 isForSelf: false,
                 customerName: "",
                 customerPhone: "",
-              }))
-            }
+              });
+            }}
           >
             <input
               type="radio"

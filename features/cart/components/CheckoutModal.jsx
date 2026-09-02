@@ -4,7 +4,7 @@ import Empty from "./Empty";
 import { calculateDiscountPrice } from "@/helper/helper";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FiShoppingBag } from "react-icons/fi";
-import { IoCloseOutline } from "react-icons/io5";
+import { IoCloseOutline, IoChevronDown } from "react-icons/io5";
 
 import CheckoutCart from "./CheckoutCart";
 import { useRouter } from "next/router";
@@ -17,6 +17,7 @@ function CheckoutModal({
   onOpenLogin,
   setOnopenLogin,
 }) {
+  const [hasMore, setHasMore] = useState(false);
   const { user, loading } = useAuth();
   const router = useRouter();
   const modalRef = useRef(null);
@@ -49,6 +50,8 @@ function CheckoutModal({
     }, 0);
   };
 
+  const hasDiscount = items.some((item) => item.discountPercentage > 0);
+
   const totalPrice = calculateTotal();
   const totalDiscount = calculateTotalDiscount();
   const originalTotal = calculateOriginalTotal();
@@ -79,6 +82,18 @@ function CheckoutModal({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [onOpenCheckout, setOnOpenCheckout]);
+
+  const handleScroll = (e) => {
+    const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
+    setHasMore(scrollTop + clientHeight < scrollHeight - 5);
+  };
+  useEffect(() => {
+    const element = modalRef.current?.querySelector(".overflow-y-auto");
+
+    if (element) {
+      setHasMore(element.scrollHeight > element.clientHeight);
+    }
+  }, [items]);
 
   return (
     <div className="relative">
@@ -131,26 +146,40 @@ function CheckoutModal({
             </div>
 
             {/* محتوای اصلی */}
-            <div className="overflow-y-auto flex-grow scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 min-h-0">
+            <div
+              onScroll={handleScroll}
+              className="overflow-y-auto flex-grow scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 min-h-0"
+            >
               {items.length === 0 ? (
                 <Empty onClose={setOnOpenCheckout} />
               ) : (
-                <div className="divide-y divide-gray-100">
-                  {items.map((item, index) => (
-                    <CheckoutCart key={item.id || index} item={item} />
-                  ))}
-                </div>
+                <>
+                  <div className="divide-y divide-gray-100">
+                    {items.map((item, index) => (
+                      <CheckoutCart key={item.id || index} item={item} />
+                    ))}
+                  </div>{" "}
+                  {hasMore && (
+                    <div className="absolute bottom-51 left-1/2 -translate-x-1/2 pointer-events-none">
+                      <IoChevronDown className="text-gray-400 text-2xl animate-bounce" />
+                    </div>
+                  )}
+                </>
               )}
             </div>
 
             {/* فوتر با خلاصه خرید */}
             {items.length > 0 && (
-              <div className="bg-gray-50 px-6 py-2.5 border-t border-gray-200 space-y-3">
+              <div className="bg-gray-50 px-6 py-2.5 border-t-2 border-gray-300 space-y-3 z-10">
                 {/* خلاصه قیمت‌ها */}
                 <div className="space-y-1">
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Original Price:</span>
-                    <span className="text-gray-500 line-through">
+                    <span
+                      className={`text-gray-500 ${
+                        hasDiscount ? "line-through" : ""
+                      }`}
+                    >
                       ${originalTotal.toFixed(2)}
                     </span>
                   </div>
@@ -171,12 +200,6 @@ function CheckoutModal({
                     </div>
                   </div>
                 </div>
-
-                {/* اطلاعات ارسال */}
-                {/* <div className="flex items-center gap-2 text-xs text-gray-500 bg-blue-50 p-1 rounded-lg">
-                  <BsTruck className="text-blue-500 flex-shrink-0" />
-                  <span>Free shipping on orders over $100</span>
-                </div> */}
 
                 {/* دکمه ادامه */}
                 <button
