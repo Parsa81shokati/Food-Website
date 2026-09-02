@@ -5,7 +5,7 @@ import { FaUser } from "react-icons/fa";
 
 function UserSection({ loading, user, setOnopenLogin, handleLogout }) {
   return (
-    <div className="md:w-[130px] flex justify-end">
+    <div className="hidden md:flex md:w-[130px] justify-end">
       {loading ? (
         <div
           className="

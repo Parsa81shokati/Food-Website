@@ -207,11 +207,9 @@ function CheckoutModal({
         @keyframes slideDown {
           from {
             opacity: 0;
-            transform: translate(-50%, -40%);
           }
           to {
             opacity: 1;
-            transform: translate(-50%, -50%);
           }
         }
 

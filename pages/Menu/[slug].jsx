@@ -5,6 +5,8 @@ import { GET_FOOD_BY_SLUG } from "@/features/menu/queries/getFoodBySlug";
 import { GET_FOODS_BY_CATEGORY } from "@/features/menu/queries/getFoods";
 import Image from "next/image";
 import React from "react";
+import { useRouter } from "next/router";
+import { IoArrowBack } from "react-icons/io5";
 import { MdOutlineRateReview } from "react-icons/md";
 
 // export async function getStaticPaths() {
@@ -76,9 +78,19 @@ export async function getStaticProps({ params }) {
 }
 
 function Details({ food }) {
+  const router = useRouter();
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-24 pb-16">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-15 pb-16">
       <div className="container mx-auto px-4">
+        {/* Back button */}
+        <button
+          onClick={() => router.back()}
+          className="mb-6 flex items-center gap-2 text-gray-600 hover:text-[#9e0910] transition-colors group"
+        >
+          <IoArrowBack className="text-2xl group-hover:-translate-x-1 transition-transform" />
+          <span className="text-sm font-medium">Back</span>
+        </button>
+
         {/* محتوای اصلی */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
           {/* بخش جزئیات غذا */}
