@@ -1,23 +1,33 @@
-const otpStore = new Map();
+import { getStore } from "@netlify/blobs";
 
-export function saveOtp(phone, otp) {
-  otpStore.set(phone, {
-    otp,
-    expires: Date.now() + 3 * 60 * 1000, // 3 دقیقه
+const store = getStore("otp-store");
+
+export async function saveOtp(phone, otp) {
+  await store.setJSON(`otp:${phone}`, {
+    otp: Number(otp),
+    expires: Date.now() + 3 * 60 * 1000,
   });
 }
 
-export function verifyOtp(phone, otp) {
-  const record = otpStore.get(phone);
+export async function verifyOtp(phone, otp) {
+  const record = await store.get(`otp:${phone}`, {
+    type: "json",
+  });
 
-  if (!record) return false;
-  if (record.expires < Date.now()) {
-    otpStore.delete(phone);
+  if (!record) {
     return false;
   }
 
-  if (record.otp !== Number(otp)) return false;
+  if (record.expires < Date.now()) {
+    await store.delete(`otp:${phone}`);
+    return false;
+  }
 
-  otpStore.delete(phone);
+  if (record.otp !== Number(otp)) {
+    return false;
+  }
+
+  await store.delete(`otp:${phone}`);
+
   return true;
 }

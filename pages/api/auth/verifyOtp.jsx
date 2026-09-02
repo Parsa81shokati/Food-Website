@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   console.log("Received OTP:", otp);
   console.log("Type of received OTP:", typeof otp);
 
-  const isValid = verifyOtp(phone, otp);
+  const isValid = await verifyOtp(phone, otp);
 
   if (!isValid) {
     return res.status(400).json({ error: "Invalid or expired OTP" });

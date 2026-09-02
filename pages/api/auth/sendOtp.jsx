@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 
     const otp = Math.floor(100000 + Math.random() * 900000);
 
-    saveOtp(phone, otp);
+    await saveOtp(phone, otp);
 
     console.log("OTP:", otp);
 
