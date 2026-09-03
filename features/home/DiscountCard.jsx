@@ -173,26 +173,24 @@ function DiscountCard({ food }) {
               <button
                 onClick={(e) => {
                   e.preventDefault();
-                  e.stopPropagation();
                   dispatch(addItem(food));
                 }}
                 className="relative group/btn overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#9e0910] to-[#c20e17] rounded-full opacity-0 group-hover/btn:opacity-100 transition-opacity" />
-                <div className="relative flex items-center gap-1 md:gap-2 bg-[#9e0910] text-white text-xs md:text-sm px-2 md:px-3 py-1.5 rounded-full hover:shadow-lg transition-all duration-300 group-hover/btn:scale-105">
+                <div className="relative flex items-center gap-1 bg-[#9e0910] text-white text-xs md:text-sm px-3 py-1.5 rounded-full hover:shadow-lg transition-all duration-300 group-hover/btn:scale-105">
                   <MdShoppingCart className="text-sm md:text-base" />
-                  <span className="hidden md:inline">Add</span>
+                  <span>Add</span>
                 </div>
               </button>
             ) : (
-              <div className="flex items-center gap-1 md:gap-2 bg-gradient-to-r from-[#9e0910] to-[#c20e17] text-white rounded-full px-1 py-0.5 shadow-lg">
+              <div className="flex items-center gap-0.5 md:gap-2 bg-gradient-to-r from-[#9e0910] to-[#c20e17] text-white rounded-full px-1.5 py-1 shadow-lg">
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    e.stopPropagation();
                     dispatch(removeItem(food));
                   }}
-                  className="w-6 h-6 md:w-7 md:h-7 flex items-center justify-center hover:bg-white/20 rounded-full transition-all text-lg md:text-xl font-bold"
+                  className="w-6 h-6 flex items-center justify-center hover:bg-white/20 rounded-full transition-all text-lg font-bold"
                 >
                   <MdRemove />
                 </button>
@@ -202,11 +200,9 @@ function DiscountCard({ food }) {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    e.stopPropagation();
                     dispatch(addItem(food));
-                    console.log("ADD");
                   }}
-                  className="w-6 h-6 md:w-7 md:h-7 flex items-center justify-center hover:bg-white/20 rounded-full transition-all text-lg md:text-xl font-bold"
+                  className="w-6 h-6 flex items-center justify-center hover:bg-white/20 rounded-full transition-all text-lg font-bold"
                 >
                   <MdAdd />
                 </button>

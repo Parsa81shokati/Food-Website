@@ -45,7 +45,7 @@ function DiscountSwiper({ discounted }) {
             <span className="text-sm font-medium text-gray-600">Ends in:</span>
           </div>
           <div className="bg-gradient-to-b from-[#9e0910] to-[#c20e17] text-white rounded-lg px-4 py-2 text-center min-w-[120px] shadow-lg">
-            <CountdownTimer />
+            {/* <CountdownTimer /> */}
           </div>
         </div>
       </div>
@@ -86,8 +86,8 @@ function DiscountSwiper({ discounted }) {
           <Swiper
             onSwiper={setSwiperRef}
             modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={15}
-            slidesPerView={1.2}
+            spaceBetween={3}
+            slidesPerView={1.5}
             centeredSlides={false}
             loop={true}
             autoplay={{
@@ -97,7 +97,7 @@ function DiscountSwiper({ discounted }) {
             }}
             speed={800}
             breakpoints={{
-              480: { slidesPerView: 1.5, spaceBetween: 15 },
+              480: { slidesPerView: 1.2, spaceBetween: 5 },
               640: { slidesPerView: 2.2, spaceBetween: 20 },
               768: { slidesPerView: 2.5, spaceBetween: 20 },
               1024: { slidesPerView: 3.5, spaceBetween: 25 },

@@ -14,13 +14,6 @@ function CategoryCard({ data, category }) {
             : "bg-gray-100 hover:bg-gray-200 text-gray-700"
         }`}
       >
-        {/* آیکون تیک برای دسته‌بندی فعال */}
-        {/* {isActive && (
-          <div className="absolute -top-1 -right-1 z-10">
-            <BsCheckCircleFill className="text-white text-sm md:text-base drop-shadow-lg" />
-          </div>
-        )} */}
-
         {/* تصویر */}
         <div className="relative w-10 h-10 md:w-14 md:h-14 mb-1">
           <Image

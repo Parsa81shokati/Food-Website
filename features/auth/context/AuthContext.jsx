@@ -1,10 +1,8 @@
-import { useRouter } from "next/router";
 import React, { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext(null);
 
 function AuthProvider({ children }) {
-  const router = useRouter();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -26,10 +24,6 @@ function AuthProvider({ children }) {
       return true;
     } catch (err) {
       setUser(null);
-
-      if (redirectTo) {
-        router.replace(redirectTo);
-      }
     } finally {
       setLoading(false);
     }
