@@ -21,91 +21,141 @@ function PaymentModal({
   return (
     <div>
       {showModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative animate-fadeInUp">
-            {/* دکمه بستن (فقط در حالت‌های success/failed قابل استفاده است) */}
-            {/* {paymentStatus !== "processing" && (
-              <button
-                onClick={closeModal}
-                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition"
-              >
-                <FaTimes className="text-xl" />
-              </button>
-            )} */}
-
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
+          <div className="relative w-full max-w-md overflow-hidden rounded-3xl bg-white p-8 shadow-2xl animate-fadeInUp">
             <div className="text-center">
-              {/* آیکون وضعیت */}
+              {/* ================= PROCESSING ================= */}
               {paymentStatus === "processing" && (
-                <div className="flex justify-center mb-4">
-                  <FaSpinner className="text-5xl text-[#9e0910] animate-spin" />
-                </div>
-              )}
-              {paymentStatus === "success" && (
-                <div className="flex justify-center mb-4">
-                  <FaCheckCircle className="text-6xl text-green-500" />
-                </div>
-              )}
-              {paymentStatus === "failed" && (
-                <div className="flex justify-center mb-4">
-                  <FaTimes className="text-6xl text-red-500" />
-                </div>
-              )}
+                <>
+                  {/* Animated Icon */}
+                  <div className="relative mx-auto mb-6 flex h-24 w-24 items-center justify-center">
+                    <div className="absolute inset-0 rounded-full bg-[#9e0910]/10 animate-ping" />
 
-              {/* عنوان */}
-              <h3 className="text-xl font-bold text-gray-800 mb-2">
-                {paymentStatus === "processing" && "Processing Payment"}
-                {paymentStatus === "success" && "Payment Successful!"}
-                {paymentStatus === "failed" && "Payment Failed"}
-              </h3>
-
-              {/* پیام وضعیت */}
-              <p className="text-gray-600 mb-4">{statusMessage}</p>
-
-              {/* نوار پیشرفت (فقط در حالت پردازش) */}
-              {paymentStatus === "processing" && (
-                <div className="space-y-2">
-                  <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                    <div
-                      className="bg-gradient-to-r from-[#9e0910] to-[#c20e17] h-3 rounded-full transition-all duration-300"
-                      style={{ width: `${progress}%` }}
-                    />
+                    <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-[#9e0910]/10">
+                      <FaCreditCard className="text-3xl text-[#9e0910]" />
+                    </div>
                   </div>
-                  <p className="text-sm font-mono text-gray-600">
-                    {Math.round(progress)}%
+
+                  <h3 className="mb-2 text-xl font-bold text-gray-800">
+                    Processing Payment
+                  </h3>
+
+                  <p className="mb-6 text-sm leading-6 text-gray-500">
+                    {statusMessage}
                   </p>
-                </div>
+
+                  {/* Progress */}
+                  <div className="space-y-3">
+                    <div className="h-3 w-full overflow-hidden rounded-full bg-gray-100">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-[#9e0910] to-[#c20e17] transition-all duration-300"
+                        style={{ width: `${progress}%` }}
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-400">Please wait...</span>
+
+                      <span className="font-semibold text-[#9e0910]">
+                        {Math.round(progress)}%
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Security Info */}
+                  <div className="mt-7 flex items-center justify-center gap-2 text-xs text-gray-400">
+                    <FaLock />
+                    <span>Your payment is being processed securely</span>
+                  </div>
+                </>
               )}
 
-              {/* دکمه‌های اقدام در حالت موفقیت/خطا */}
+              {/* ================= SUCCESS ================= */}
               {paymentStatus === "success" && (
-                <div className="mt-6 space-y-3">
-                  <button
-                    onClick={closeModal}
-                    className="w-full bg-green-600 text-white py-3 rounded-xl font-medium hover:bg-green-700 transition"
-                  >
-                    Redirecting to your order...
-                  </button>
-                </div>
+                <>
+                  {/* Success Icon */}
+                  <div className="relative mx-auto mb-6 flex h-24 w-24 items-center justify-center">
+                    <div className="absolute inset-0 rounded-full bg-green-100 animate-pulse" />
+
+                    <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-green-50">
+                      <FaCheckCircle className="text-6xl text-green-500" />
+                    </div>
+                  </div>
+
+                  <h3 className="mb-2 text-2xl font-bold text-gray-800">
+                    Payment Successful!
+                  </h3>
+
+                  <p className="mx-auto max-w-xs text-sm leading-6 text-gray-500">
+                    {statusMessage}
+                  </p>
+
+                  {/* Redirecting Status */}
+                  <div className="mt-7 rounded-2xl bg-gray-50 px-5 py-4">
+                    <div className="flex items-center justify-center gap-3">
+                      <FaSpinner className="animate-spin text-[#9e0910]" />
+
+                      <span className="text-sm font-medium text-gray-600">
+                        Redirecting to your order
+                      </span>
+
+                      <span className="flex gap-1">
+                        <span className="h-1 w-1 animate-bounce rounded-full bg-gray-400 [animation-delay:0ms]" />
+                        <span className="h-1 w-1 animate-bounce rounded-full bg-gray-400 [animation-delay:150ms]" />
+                        <span className="h-1 w-1 animate-bounce rounded-full bg-gray-400 [animation-delay:300ms]" />
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Secure Payment */}
+                  <div className="mt-5 flex items-center justify-center gap-2 text-xs text-gray-400">
+                    <FaShieldAlt />
+                    <span>Payment completed securely</span>
+                  </div>
+                </>
               )}
 
+              {/* ================= FAILED ================= */}
               {paymentStatus === "failed" && (
-                <div className="mt-6 space-y-3">
-                  <button
-                    onClick={() => {
-                      closeModal();
-                      // می‌توانید دوباره تلاش کنید
-                    }}
-                    className="w-full bg-[#9e0910] text-white py-3 rounded-xl font-medium hover:bg-[#7e0710] transition"
-                  >
-                    Try Again
-                  </button>
-                  <button
-                    onClick={closeModal}
-                    className="w-full text-gray-500 text-sm hover:text-gray-700 transition"
-                  >
-                    Cancel
-                  </button>
-                </div>
+                <>
+                  {/* Error Icon */}
+                  <div className="relative mx-auto mb-6 flex h-24 w-24 items-center justify-center">
+                    <div className="absolute inset-0 rounded-full bg-red-100 animate-pulse" />
+
+                    <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-red-50">
+                      <FaTimes className="text-5xl text-red-500" />
+                    </div>
+                  </div>
+
+                  <h3 className="mb-2 text-2xl font-bold text-gray-800">
+                    Payment Failed
+                  </h3>
+
+                  <p className="mx-auto max-w-xs text-sm leading-6 text-gray-500">
+                    {statusMessage}
+                  </p>
+
+                  {/* Try Again */}
+                  <div className="mt-7 space-y-3">
+                    <button
+                      onClick={() => {
+                        closeModal();
+                        // می‌توانید دوباره تلاش کنید
+                      }}
+                      className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#9e0910] py-3.5 font-medium text-white shadow-lg shadow-[#9e0910]/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#7e0710] hover:shadow-xl"
+                    >
+                      <span>Try Again</span>
+                      <FaArrowLeft className="text-sm" />
+                    </button>
+
+                    <button
+                      onClick={closeModal}
+                      className="w-full rounded-xl py-3 text-sm font-medium text-gray-500 transition hover:bg-gray-50 hover:text-gray-700"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </>
               )}
             </div>
           </div>

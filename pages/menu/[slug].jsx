@@ -1,6 +1,7 @@
 import CommentCard from "@/features/menu/components/CommentCard";
 import FoodDetails from "@/features/menu/components/FoodDetails";
 import client from "@/lib/apollo/Client";
+import Head from "next/head";
 import { GET_FOOD_BY_SLUG } from "@/features/menu/queries/getFoodBySlug";
 import { GET_FOODS_BY_CATEGORY } from "@/features/menu/queries/getFoods";
 import Image from "next/image";
@@ -80,63 +81,68 @@ export async function getStaticProps({ params }) {
 function Details({ food }) {
   const router = useRouter();
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-15 pb-16">
-      <div className="container mx-auto px-4">
-        {/* Back button */}
-        <button
-          onClick={() => router.back()}
-          className="mb-6 flex items-center gap-2 text-gray-600 hover:text-[#9e0910] transition-colors group"
-        >
-          <IoArrowBack className="text-2xl group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-medium">Back</span>
-        </button>
+    <>
+      <Head>
+        <title>Foody | {food.title}</title>
+      </Head>
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-15 pb-16">
+        <div className="container mx-auto px-4">
+          {/* Back button */}
+          <button
+            onClick={() => router.back()}
+            className="mb-6 flex items-center gap-2 text-gray-600 hover:text-[#9e0910] transition-colors group"
+          >
+            <IoArrowBack className="text-2xl group-hover:-translate-x-1 transition-transform" />
+            <span className="text-sm font-medium">Back</span>
+          </button>
 
-        {/* محتوای اصلی */}
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-          {/* بخش جزئیات غذا */}
-          <div className="lg:w-2/3">
-            <FoodDetails food={food} />
-          </div>
+          {/* محتوای اصلی */}
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+            {/* بخش جزئیات غذا */}
+            <div className="lg:w-2/3">
+              <FoodDetails food={food} />
+            </div>
 
-          {/* بخش نظرات */}
-          <div className="lg:w-1/3">
-            <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
-              {/* هدر نظرات */}
-              <div className="flex items-center gap-2 mb-6">
-                <div className="bg-[#9e0910]/10 p-2 rounded-full">
-                  <MdOutlineRateReview className="text-[#9e0910] text-xl" />
-                </div>
-                <h2 className="text-xl font-bold text-gray-800">
-                  Customer Reviews
-                </h2>
-                <span className="bg-[#9e0910] text-white text-xs px-2 py-1 rounded-full">
-                  {food.comments?.length || 0}
-                </span>
-              </div>
-
-              {/* لیست نظرات */}
-              {food.comments && food.comments.length > 0 ? (
-                <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2 scrollbar-thin">
-                  {food.comments.map((comment, index) => (
-                    <CommentCard key={index} comment={comment} />
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-12">
-                  <div className="inline-block p-4 bg-gray-100 rounded-full mb-3">
-                    <MdOutlineRateReview className="text-3xl text-gray-400" />
+            {/* بخش نظرات */}
+            <div className="lg:w-1/3">
+              <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
+                {/* هدر نظرات */}
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="bg-[#9e0910]/10 p-2 rounded-full">
+                    <MdOutlineRateReview className="text-[#9e0910] text-xl" />
                   </div>
-                  <p className="text-gray-500 text-sm">No reviews yet</p>
-                  <p className="text-xs text-gray-400 mt-1">
-                    Be the first to review!
-                  </p>
+                  <h2 className="text-xl font-bold text-gray-800">
+                    Customer Reviews
+                  </h2>
+                  <span className="bg-[#9e0910] text-white text-xs px-2 py-1 rounded-full">
+                    {food.comments?.length || 0}
+                  </span>
                 </div>
-              )}
+
+                {/* لیست نظرات */}
+                {food.comments && food.comments.length > 0 ? (
+                  <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2 scrollbar-thin">
+                    {food.comments.map((comment, index) => (
+                      <CommentCard key={index} comment={comment} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-12">
+                    <div className="inline-block p-4 bg-gray-100 rounded-full mb-3">
+                      <MdOutlineRateReview className="text-3xl text-gray-400" />
+                    </div>
+                    <p className="text-gray-500 text-sm">No reviews yet</p>
+                    <p className="text-xs text-gray-400 mt-1">
+                      Be the first to review!
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

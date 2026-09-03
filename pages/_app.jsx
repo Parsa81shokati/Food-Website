@@ -7,18 +7,24 @@ import store from "@/redux-toolkit/app/store";
 import "@/styles/globals.css";
 import { ApolloProvider } from "@apollo/client/react";
 import { Provider } from "react-redux";
+import Head from "next/head";
 
 export default function App({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
   return (
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <AuthProvider>
-          <CartPersist />
-          <GlobalLoginModal />
-          {getLayout(<Component {...pageProps} />)}
-        </AuthProvider>
-      </Provider>
-    </ApolloProvider>
+    <>
+      <Head>
+        <title>Foody</title>
+      </Head>
+      <ApolloProvider client={client}>
+        <Provider store={store}>
+          <AuthProvider>
+            <CartPersist />
+            <GlobalLoginModal />
+            {getLayout(<Component {...pageProps} />)}
+          </AuthProvider>
+        </Provider>
+      </ApolloProvider>
+    </>
   );
 }

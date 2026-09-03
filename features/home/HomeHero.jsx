@@ -136,7 +136,7 @@ function HomeHero() {
                 height={500}
                 priority
                 fetchPriority="high"
-                className="relative z-10 drop-shadow-2xl hover:scale-105 transition-transform duration-500"
+                className="relative z-10 w-[75%] sm:w-[65%] md:w-full max-w-[600px] mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500"
               />
 
               {/* برچسب‌های روی تصویر */}
