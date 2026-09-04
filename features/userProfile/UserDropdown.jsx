@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import { FiLogOut, FiChevronDown } from "react-icons/fi";
 import { FaCrown } from "react-icons/fa";
-import { menuItems } from "./Routes";
+import { menuItems } from "../../components/layout/header/Routes";
 
 function UserDropdown({ user, onLogout }) {
   const [open, setOpen] = useState(false);

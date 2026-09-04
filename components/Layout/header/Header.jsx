@@ -11,7 +11,7 @@ import HeaderLogo from "./HeaderLogo";
 import DesktopNav from "./DesktopNav";
 import UserSection from "./UserSection";
 import MobileSidebar from "./MobileSidebar";
-import { routes } from "../../../features/userProfile/Routes";
+import { routes } from "./Routes";
 
 function Header() {
   const [onOpenCheckout, setOnOpenCheckout] = useState(false);

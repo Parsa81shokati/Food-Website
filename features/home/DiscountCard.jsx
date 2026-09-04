@@ -173,6 +173,7 @@ function DiscountCard({ food }) {
               <button
                 onClick={(e) => {
                   e.preventDefault();
+                  e.stopPropagation();
                   dispatch(addItem(food));
                 }}
                 className="relative group/btn overflow-hidden"
@@ -188,6 +189,7 @@ function DiscountCard({ food }) {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
+                    e.stopPropagation();
                     dispatch(removeItem(food));
                   }}
                   className="w-6 h-6 flex items-center justify-center hover:bg-white/20 rounded-full transition-all text-lg font-bold"
@@ -200,6 +202,7 @@ function DiscountCard({ food }) {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
+                    e.stopPropagation();
                     dispatch(addItem(food));
                   }}
                   className="w-6 h-6 flex items-center justify-center hover:bg-white/20 rounded-full transition-all text-lg font-bold"

@@ -5,7 +5,7 @@ import { IoFastFoodSharp } from "react-icons/io5";
 import { FiChevronRight, FiChevronDown, FiLogOut } from "react-icons/fi";
 import { FaUser, FaUserCircle } from "react-icons/fa";
 import { MdLocalOffer } from "react-icons/md";
-import { menuItems } from "../../../features/userProfile/Routes";
+import { menuItems } from "./Routes";
 
 function MobileSidebar({
   routes,

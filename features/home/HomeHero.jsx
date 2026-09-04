@@ -75,7 +75,7 @@ function HomeHero() {
             {/* دکمه‌ها */}
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
               <Link
-                href="/Menu"
+                href="/menu"
                 className="group relative px-8 py-3 bg-[#9e0910] text-white rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105"
               >
                 <span className="relative z-10 flex items-center gap-2">
