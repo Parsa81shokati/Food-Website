@@ -1,0 +1,35 @@
+export const menuItems = [
+  {
+    id: "profile",
+    label: "My Profile",
+    description: "Manage your account",
+    icon: <FiUser className="text-lg" />,
+    href: "/profile",
+    color: "text-blue-500",
+  },
+  {
+    id: "orders",
+    label: "My Orders",
+    description: "Track your orders",
+    icon: <FiShoppingBag className="text-lg" />,
+    href: "/orders",
+    color: "text-green-500",
+  },
+  {
+    id: "offers",
+    label: "Special Offers",
+    description: "Exclusive deals for you",
+    icon: <MdLocalOffer className="text-lg" />,
+    href: "/offers",
+    color: "text-purple-500",
+    badge: "3 New",
+  },
+  // {
+  //   id: "help",
+  //   label: "Help & Support",
+  //   description: "Get assistance",
+  //   icon: <FiHelpCircle className="text-lg" />,
+  //   href: "/help",
+  //   color: "text-teal-500",
+  // },
+];
