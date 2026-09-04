@@ -4,8 +4,7 @@ import { usePathname } from "next/navigation"; // <-- اضافه شده
 import { IoFastFoodSharp } from "react-icons/io5";
 import { FiChevronRight, FiChevronDown, FiLogOut } from "react-icons/fi";
 import { FaUser, FaUserCircle } from "react-icons/fa";
-import { MdLocalOffer } from "react-icons/md";
-import { menuItems } from "./Routes";
+import { menuItems } from "@/features/userProfile/menuItems";
 
 function MobileSidebar({
   routes,
