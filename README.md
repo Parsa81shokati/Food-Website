@@ -18,19 +18,17 @@ A modern and responsive food ordering web application that allows users to explo
 - Designed a **modular, reusable, and maintainable component architecture**
 - Fully **responsive UI** optimized for desktop, tablet, and mobile devices
 
+ > ⚠️ **توجه:**
+> به دلیل محدودیت‌های دسترسی **Netlify**، برای مشاهده و دریافت محتوای سایت ممکن است نیاز به **VPN** داشته باشید.
+
+> ⚠️ **Note:**
+> Due to **Netlify access restrictions**, a **VPN** may be required to access the website and load its content successfully.
+> If the content does not load, please enable a VPN and try again.
+
+
+
 #### 🎬 Demo:
 
-- Live Demo: *[Your Live Demo Link]*
+- Live Demo: *https://foody-88.netlify.app/*
 
-#### 🛠️ Tech Stack:
 
-- **Next.js**
-- **React.js**
-- **TailwindCSS**
-- **Redux Toolkit**
-- **Apollo Client**
-- **GraphQL**
-- **Hygraph CMS**
-- **JWT**
-- **HttpOnly Cookies**
-- **REST API**
