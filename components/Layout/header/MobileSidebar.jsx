@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { usePathname } from "next/navigation"; // <-- اضافه شده
 import { IoFastFoodSharp } from "react-icons/io5";
 import { FiChevronRight, FiChevronDown, FiLogOut } from "react-icons/fi";
-import { FaUser, FaUserCircle } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { menuItems } from "@/features/userProfile/menuItems";
 
 function MobileSidebar({

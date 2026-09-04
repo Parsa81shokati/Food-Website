@@ -1,13 +1,7 @@
 import { FiHome, FiInfo, FiPhone } from "react-icons/fi";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { GiFullPizza } from "react-icons/gi";
-import {
-  FiUser,
-  FiShoppingBag,
-  FiSettings,
-  FiHelpCircle,
-} from "react-icons/fi";
-import { MdLocalOffer } from "react-icons/md";
+
 
 export const routes = [
   {

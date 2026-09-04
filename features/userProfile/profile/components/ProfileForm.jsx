@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import React from "react";
 import { FiEdit2, FiSave, FiCheckCircle } from "react-icons/fi";
 import { MdOutlinePerson } from "react-icons/md";

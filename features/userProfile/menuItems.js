@@ -1,3 +1,9 @@
+import {
+  FiUser,
+  FiShoppingBag,
+
+} from "react-icons/fi";
+import { MdLocalOffer } from "react-icons/md";
 export const menuItems = [
   {
     id: "profile",
