@@ -123,7 +123,7 @@ function useLoginFlow(onClose) {
     setLoading(true);
 
     try {
-      await sendOtp(phone);
+      const result = await sendOtp(phone);
 
       setOtpSession({
         phone,

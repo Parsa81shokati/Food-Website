@@ -4,13 +4,6 @@ import { FaUserFriends, FaUserCheck } from "react-icons/fa";
 function RecipientSection({ formData, setFormData, user, setFormErrors }) {
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100/80">
-      {/* <div className="bg-gradient-to-r from-[#9e0910] to-[#c20e17] px-6 py-4">
-        <h2 className="text-lg font-semibold text-white flex items-center gap-2">
-          <FaUserFriends className="text-white/80" />
-          Recipient
-        </h2>
-      </div> */}
-
       <div className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <label
@@ -20,12 +13,13 @@ function RecipientSection({ formData, setFormData, user, setFormErrors }) {
                 : "border-gray-200 hover:border-[#9e0910]/40 hover:bg-gray-50"
             }`}
             onClick={() => {
-              setFormData((prev) => ({
-                ...prev,
+              setFormData({
+                ...formData,
                 isForSelf: true,
-                customerName: `${user?.firstName} ${user?.lastName}`,
-                customerPhone: user?.phone,
-              }));
+                customerName:
+                  `${user?.firstName || ""} ${user?.lastName || ""}`.trim(),
+                customerPhone: user?.phone || "",
+              });
 
               setFormErrors((prev) => ({
                 ...prev,
@@ -78,10 +72,17 @@ function RecipientSection({ formData, setFormData, user, setFormErrors }) {
             }`}
             onClick={() => {
               setFormData({
+                ...formData,
                 isForSelf: false,
                 customerName: "",
                 customerPhone: "",
               });
+
+              setFormErrors((prev) => ({
+                ...prev,
+                customerName: "",
+                customerPhone: "",
+              }));
             }}
           >
             <input

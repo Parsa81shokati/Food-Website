@@ -30,7 +30,7 @@ function VerifyStep({
         Enter the 6-digit code sent to {phone}
       </p>
 
-      <div className="flex flex-col items-center space-y-4">
+      <div className="flex flex-col items-center space-y-3.5">
         <OtpInput
           length={6}
           value={otp}

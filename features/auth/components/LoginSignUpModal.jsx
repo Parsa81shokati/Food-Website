@@ -46,6 +46,7 @@ function LoginSignUpModal({ onClose }) {
     <>
       {notification && (
         <Notification
+          key={`${notification.message}-${notification.code || ""}`}
           message={notification.message}
           type={notification.type}
           code={notification.code}
@@ -59,7 +60,7 @@ function LoginSignUpModal({ onClose }) {
       />
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="bg-white max-w-md w-full rounded-3xl shadow-2xl p-8 relative animate-fadeIn">
+        <div className="bg-white max-w-md min-h-[400px] w-full rounded-3xl shadow-2xl p-8 relative animate-fadeIn">
           <div className="flex items-center justify-between mb-6">
             {step === 1 ? (
               <div />
