@@ -45,7 +45,7 @@ function DiscountSwiper({ discounted }) {
             <span className="text-sm font-medium text-gray-600">Ends in:</span>
           </div>
           <div className="bg-gradient-to-b from-[#9e0910] to-[#c20e17] text-white rounded-lg px-4 py-2 text-center min-w-[120px] shadow-lg">
-            {/* <CountdownTimer /> */}
+            <CountdownTimer />
           </div>
         </div>
       </div>
